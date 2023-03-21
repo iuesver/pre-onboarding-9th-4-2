@@ -3,7 +3,7 @@ import { Data } from "../types/type";
 
 export const fetcher = async () => {
   try {
-    const response = await axios.get("/public/mock_data.json");
+    const response = await axios.get("../../public/mock_data.json");
     const initialData: Data[] = response.data;
     const data = initialData.filter((item: Data) => {
       const today = new Date(2023, 3, 8);
