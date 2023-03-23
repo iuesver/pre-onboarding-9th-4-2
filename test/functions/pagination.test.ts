@@ -47,6 +47,25 @@ describe("sortArray should return a sorted array", () => {
 
 // Function pagination test code
 
+describe("pagination should return slice array depending on the conditions", () => {
+  it("condition includes keyword", () => {
+    const sortByKeyword = testArray.filter((item) =>
+      item.customer_name.includes("e")
+    );
+    const testResult = sortByKeyword.slice(50 * (1 - 1), 50 * 1);
+    expect(pagination(testArray, 1, null, "e")).toEqual(testResult);
+  });
+  it("condition includes sorting keyword", () => {
+    const sortBySortingKeyword = testArray.sort((a, b) => b.id - a.id);
+    const testResult = sortBySortingKeyword.slice(50 * (1 - 1), 50 * 1);
+    expect(pagination(testArray, 1, "id_des", null)).toEqual(testResult);
+  });
+  it("page number is 2", () => {
+    const testResult = testArray.slice(50 * (2 - 1), 50 * 2);
+    expect(pagination(testArray, 2, null, null)).toEqual(testResult);
+  });
+});
+
 // Function totalPageNumber test code
 
 describe("totalPageNumber should return a integer number", () => {
