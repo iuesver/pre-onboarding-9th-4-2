@@ -8,8 +8,10 @@ import ButtonGroup from "../components/button/ButtonGroup";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSearchParams } from "react-router-dom";
 
 const MainPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { error, isValidating } = useSWR("/", fetcher, {
     refreshInterval: 5000,
   });
@@ -30,7 +32,10 @@ const MainPage = () => {
     <section>
       <article className="flex flex-col items-center">
         <h1 className="text-4xl font-bold my-6">스위치원 주문 목록표</h1>
-        <TextInput />
+        <TextInput
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+        />
         <table className="table w-3/4 shadow-lg">
           <TableHead />
           <TableBody />
