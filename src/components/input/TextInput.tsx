@@ -2,14 +2,10 @@ import useSWR from "swr";
 import { fetcher } from "../../functions/fetcher";
 import { Data } from "../../types/type";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
+import { useSearchParams } from "react-router-dom";
 
-const TextInput = ({
-  searchParams,
-  setSearchParams,
-}: {
-  searchParams: URLSearchParams;
-  setSearchParams: (arg?: URLSearchParams) => void;
-}) => {
+const TextInput = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { data } = useSWR("/", fetcher);
   return (
     <div className="mb-6">
